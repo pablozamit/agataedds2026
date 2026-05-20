@@ -19,8 +19,8 @@
 
 body{
   font-family:'Inter',sans-serif;
-  background:#ffffff;
-  color:#111111;
+  background:#fff;
+  color:#111;
   line-height:1.75;
   -webkit-font-smoothing:antialiased;
 }
@@ -33,58 +33,53 @@ body{
 }
 
 section{
-  margin-bottom:110px;
+  margin-bottom:120px;
 }
 
 h1{
-  font-size:56px;
-  line-height:1.05;
-  font-weight:700;
+  font-size:58px;
+  line-height:1.02;
   letter-spacing:-2px;
-  margin-bottom:32px;
+  font-weight:700;
+  margin-bottom:34px;
 }
 
 h2{
-  font-size:34px;
-  line-height:1.2;
+  font-size:36px;
+  line-height:1.15;
+  letter-spacing:-1.4px;
   font-weight:600;
-  letter-spacing:-1px;
-  margin-bottom:28px;
-}
-
-h3{
-  font-size:22px;
-  font-weight:600;
-  margin-bottom:18px;
+  margin-bottom:30px;
 }
 
 p{
   font-size:20px;
-  margin-bottom:26px;
   color:#222;
+  margin-bottom:26px;
+}
+
+.lead{
+  font-size:25px;
+  line-height:1.45;
+  color:#111;
 }
 
 .small{
   font-size:15px;
-  color:#666;
+  color:#6a6a6a;
 }
 
-.lead{
-  font-size:24px;
-  line-height:1.5;
-  color:#111;
-}
-
-.bold{
+.highlight{
   font-weight:600;
+  color:#111;
 }
 
 .cta{
   display:inline-block;
+  padding:18px 34px;
   background:#111;
   color:#fff;
   text-decoration:none;
-  padding:18px 34px;
   border-radius:999px;
   font-size:17px;
   font-weight:600;
@@ -92,13 +87,13 @@ p{
 }
 
 .cta:hover{
-  opacity:.85;
+  opacity:.88;
 }
 
 .quote{
   border-left:2px solid #111;
   padding-left:24px;
-  margin:70px 0;
+  margin:80px 0;
 }
 
 .quote p{
@@ -121,39 +116,33 @@ p{
   margin:90px 0;
 }
 
+.box{
+  border:1px solid #ebebeb;
+  border-radius:30px;
+  padding:44px;
+  background:#fafafa;
+}
+
 .list{
   display:flex;
   flex-direction:column;
-  gap:22px;
+  gap:26px;
   margin-top:36px;
 }
 
 .list-item{
   font-size:20px;
-  color:#222;
 }
 
-.highlight{
-  font-weight:600;
-  color:#111;
-}
-
-.box{
-  border:1px solid #eaeaea;
-  border-radius:28px;
-  padding:42px;
-  background:#fafafa;
-}
-
-.prof-placeholder{
-  border:2px dashed #d6d6d6;
-  border-radius:24px;
-  padding:80px 24px;
+.visual-placeholder{
+  border:2px dashed #d9d9d9;
+  border-radius:26px;
+  padding:70px 24px;
   text-align:center;
+  background:#fafafa;
   color:#777;
   font-size:22px;
   font-weight:500;
-  background:#fafafa;
 }
 
 .center{
@@ -167,11 +156,11 @@ p{
   }
 
   h1{
-    font-size:40px;
+    font-size:42px;
   }
 
   h2{
-    font-size:28px;
+    font-size:30px;
   }
 
   p{
@@ -194,7 +183,7 @@ p{
 <section>
 
 <p class="small">
-Experto Universitario en Dinamización Digital y Social
+EXPERTO UNIVERSITARIO EN DINAMIZACIÓN DIGITAL Y SOCIAL
 </p>
 
 <h1>
@@ -209,35 +198,38 @@ El único Experto Universitario que te enseña el método completo para construi
 Para formadores, coaches, mentores, emprendedores y profesionales digitales que saben que existe un siguiente nivel.
 </p>
 
-<div style="margin-top:42px;margin-bottom:36px;">
+<div style="margin-top:50px;margin-bottom:42px;">
 
-<p class="small">
-Avalado por:
-</p>
-
-<p>
-<strong>Universidad EUNEIZ</strong><br>
-30 créditos ECTS · Reconocimiento europeo
-</p>
-
-<p>
-<strong>California NIU</strong><br>
-Estados Unidos
-</p>
-
-<p>
-<strong>Universidad San Miguel</strong><br>
-México
-</p>
+<div class="visual-placeholder">
+[LOGOS UNIVERSIDADES + SELLOS ECTS + ELEMENTOS VISUALES DE AUTORIDAD UNIVERSITARIA]
+</div>
 
 </div>
+
+<p>
+Avalado por tres universidades internacionales:
+</p>
+
+<p>
+<strong>Universidad EUNEIZ</strong> · 30 créditos ECTS · Reconocimiento español y europeo<br>
+<strong>California NIU</strong> · Estados Unidos<br>
+<strong>Universidad San Miguel</strong> · México
+</p>
+
+<p>
+5 ediciones consecutivas · 20 expertos referentes · Plazas limitadas a 30 alumnos
+</p>
+
+<div style="margin-top:42px;">
 
 <a class="cta" href="https://calendar.app.google/QQqVbyAjwzmUYzNcA">
 Quiero más información
 </a>
 
+</div>
+
 <p class="small" style="margin-top:18px;">
-5 ediciones consecutivas · 20 expertos referentes · 30 plazas por edición
+Acceso únicamente mediante proceso de selección
 </p>
 
 </section>
@@ -252,32 +244,36 @@ Quiero más información
 <section>
 
 <h2>
-No es un problema de contenido.
+El problema no es el contenido.
 </h2>
 
 <p>
-El mercado está lleno de cursos, formaciones y comunidades que empiezan fuertes y se vacían en silencio.
+El mercado está lleno de cursos, membresías y comunidades que empiezan con energía… y se apagan a las pocas semanas.
 </p>
 
 <p>
-Grupos donde solo participan tres personas. Programas que nadie termina. Comunidades que dependen al cien por cien de la energía del creador.
+Grupos donde solo participan tres personas. Programas que nadie termina. Comunidades que dependen completamente de la energía del creador.
 </p>
 
 <p>
-Y mientras tanto, cada lanzamiento cuesta más.
+Y cuanto más depende todo de ti, más agotador se vuelve sostenerlo.
 </p>
 
 <p>
-Porque sin resultados reales no hay casos de éxito. Y sin casos de éxito, el mercado deja de creer.
+Pero también más difícil crecer.
+</p>
+
+<p>
+Porque sin alumnos que terminan, no hay transformaciones reales.
+Y sin transformaciones reales, cada lanzamiento cuesta más.
 </p>
 
 <p class="highlight">
-La raíz del problema no es el algoritmo. Es que nadie te enseñó a crear pertenencia de forma deliberada.
+La raíz del problema no es el algoritmo.
+Es que nadie te enseñó a crear pertenencia de forma deliberada.
 </p>
 
 </section>
-
-<div class="divider"></div>
 
 <section>
 
@@ -286,23 +282,27 @@ Las personas no permanecen donde consumen.
 </h2>
 
 <p class="lead">
-Permanecen donde pertenecen.
+Permanecen donde sienten que forman parte de algo.
 </p>
 
 <p>
-La Inteligencia Artificial puede crear contenidos, escribir embudos y automatizar procesos.
+Cuando una comunidad está bien diseñada, deja de depender de la presencia constante del creador.
 </p>
 
 <p>
-Pero hay algo que ninguna máquina puede replicar:
+Las personas participan.
+Se ayudan entre ellas.
+Avanzan.
+Se sostienen.
+Recomiendan.
+</p>
+
+<p>
+Y eso cambia por completo el negocio.
 </p>
 
 <p class="highlight">
-La Inteligencia Relacional.
-</p>
-
-<p>
-La capacidad de hacer que las personas se sientan vistas, acompañadas y parte de algo.
+Porque una comunidad viva genera algo que ninguna campaña puede comprar: confianza real.
 </p>
 
 </section>
@@ -317,43 +317,55 @@ La capacidad de hacer que las personas se sientan vistas, acompañadas y parte d
 <section>
 
 <h2>
-De la intuición al método universitario.
+Todo esto empezó intentando entender por qué algunas personas sí conseguían resultados.
 </h2>
 
 <p>
-Ágata Puig descubrió este patrón trabajando con grupos reales.
+Mi camino no empezó en despachos elegantes.
 </p>
 
 <p>
-Mismo contenido. Mismo acceso. Resultados completamente distintos.
+Trabajé en una gran multinacional, pero mi aprendizaje real llegó trabajando con personas y comunidades reales.
 </p>
 
 <p>
-La diferencia no estaba en la información.
+Hubo un momento que me obsesionó:
+mismo contenido, mismo acceso, mismo programa… resultados completamente distintos.
+</p>
+
+<p>
+Entonces entendí algo importante.
 </p>
 
 <p class="highlight">
+La diferencia no estaba en la información.
 Estaba en el patrón de activación humana.
 </p>
 
 <p>
-Ese descubrimiento se convirtió en método. El método en escuela. Y la escuela terminó entrando en la universidad.
+En cómo hacemos que las personas se impliquen, avancen y permanezcan.
 </p>
 
 <p>
-Hoy es la única titulación universitaria oficial especializada en Dinamización Digital y Social.
+Ese descubrimiento se convirtió en método.
+El método se convirtió en escuela.
+Y la escuela terminó entrando en la universidad.
 </p>
 
 <p>
-Además, Ágata recibió el Premio Evoluciona por votación popular sin tener una gran audiencia en redes.
+Hoy esta es la única titulación universitaria oficial especializada en Dinamización Digital y Social.
+</p>
+
+<p>
+Y recibí el Premio Evoluciona por votación popular sin tener una gran audiencia en redes.
 </p>
 
 </section>
 
 <section>
 
-<div class="prof-placeholder">
-[PRESENTACION VÍDEOS DE PROFES]
+<div class="visual-placeholder">
+[PRESENTACIÓN VÍDEOS DE PROFES]
 </div>
 
 </section>
@@ -361,33 +373,58 @@ Además, Ágata recibió el Premio Evoluciona por votación popular sin tener un
 <section>
 
 <h2>
-Lo que vas a aprender.
+No necesitas convertirte en “community manager”.
+</h2>
+
+<p class="lead">
+Necesitas aprender a diseñar comunidades que generan resultados reales.
+</p>
+
+<p>
+Puedes aplicar esto dentro de tu propio negocio:
+para mejorar la participación, aumentar la finalización y crear alumnos que se convierten en casos de éxito.
+</p>
+
+<p>
+O puedes especializarte profesionalmente y ayudar a otras marcas, escuelas y creadores a conseguir exactamente eso.
+</p>
+
+<p>
+Porque hoy hay una enorme demanda de personas capaces de construir comunidades que funcionen de verdad.
+</p>
+
+</section>
+
+<section>
+
+<h2>
+Las áreas que vas a dominar.
 </h2>
 
 <div class="list">
 
 <div class="list-item">
-<span class="highlight">Mentalidad:</span>
+<strong>MENTALIDAD</strong><br>
 El patrón interno que sostiene a un líder de comunidad.
 </div>
 
 <div class="list-item">
-<span class="highlight">Dinámicas sociales:</span>
+<strong>DINÁMICAS SOCIALES</strong><br>
 Gamificación, experiencias y activación humana real.
 </div>
 
 <div class="list-item">
-<span class="highlight">Acompañamiento humano:</span>
-Psicología de grupos, gestión emocional y comprensión profunda de las personas.
+<strong>ACOMPAÑAMIENTO HUMANO</strong><br>
+Psicología de grupos, comprensión emocional y acompañamiento profundo.
 </div>
 
 <div class="list-item">
-<span class="highlight">Arquitectura de comunidades:</span>
-Sistemas, métricas y estructuras para construir ecosistemas sostenibles.
+<strong>ARQUITECTURA DE COMUNIDADES</strong><br>
+Estructuras, métricas y sistemas para construir ecosistemas sostenibles.
 </div>
 
 <div class="list-item">
-<span class="highlight">Negocio dinamizador:</span>
+<strong>NEGOCIO DINAMIZADOR</strong><br>
 Marca personal, autoridad y monetización.
 </div>
 
@@ -395,7 +432,12 @@ Marca personal, autoridad y monetización.
 
 </section>
 
-<div class="divider"></div>
+<div class="quote">
+<p>
+“Me permitió volver a conectar con mi vocación y aplicar todo desde el primer día.”
+</p>
+<span>— Águeda</span>
+</div>
 
 <section>
 
@@ -404,7 +446,11 @@ No estudias la metodología desde fuera.
 </h2>
 
 <p class="lead">
-La vives desde dentro.
+La vives desde dentro desde el primer día.
+</p>
+
+<p>
+Mi equipo de tutores —antiguos alumnos que hoy viven de esto— y yo nos encargamos de acompañarte durante todo el proceso.
 </p>
 
 <p>
@@ -412,27 +458,35 @@ La propia formación está dinamizada.
 </p>
 
 <p>
-Ágata y su equipo de tutores —antiguos alumnos que hoy viven de esto— te acompañan para que no te quedes atrás.
+Aprendes mientras experimentas el método en primera persona.
 </p>
 
 <p>
-Aprendes mientras experimentas el método en primera persona.
+Porque no quería crear otro curso lleno de vídeos acumulando polvo digital.
 </p>
+
+</section>
+
+<section>
+
+<div class="visual-placeholder">
+[TESTIMONIOS MÁS VISUALES + MÉTRICAS DE RESULTADOS + FINALIZACIÓN + RETENCIÓN]
+</div>
 
 </section>
 
 <section class="box">
 
 <h2>
-Compromiso de empleabilidad.
+Compromiso explícito de empleabilidad.
 </h2>
 
 <p>
-Cuando termines la formación, Ágata revisará tu comunidad o proyecto de aplicación.
+Cuando termines, revisaré tu comunidad o tu proyecto de aplicación.
 </p>
 
 <p>
-Y tendrás acceso directo a oportunidades laborales, colaboraciones y proyectos reales.
+Y tendrás acceso a oportunidades laborales, colaboraciones y proyectos reales a través de mi red y mi talento conector.
 </p>
 
 <p class="highlight">
@@ -452,7 +506,7 @@ La promesa es que salgas con mercado.
 <section>
 
 <h2>
-Esto no es un complemento.
+Esto no es un complemento a lo que ya haces.
 </h2>
 
 <p class="lead">
@@ -460,29 +514,35 @@ Es la evolución que te saca del techo.
 </p>
 
 <p>
-El mercado está lleno de creadores de contenido.
+El mercado digital está lleno de creadores de contenido.
 </p>
 
-<p>
+<p class="highlight">
 Pero casi no existen Arquitectos de Comunidades.
 </p>
 
 <p>
-Y en un entorno saturado, las marcas que crecerán no son las que más publican.
+Y en un entorno saturado, las marcas que sobrevivirán no son las que más publican.
 </p>
 
-<p class="highlight">
-Son las que consiguen que las personas permanezcan.
+<p>
+Son las que consiguen que las personas permanezcan, participen y obtengan resultados reales.
+</p>
+
+<p>
+Si has llegado hasta aquí, probablemente algo ya ha resonado dentro de ti.
 </p>
 
 <div style="margin-top:48px;">
+
 <a class="cta" href="https://calendar.app.google/QQqVbyAjwzmUYzNcA">
 Quiero más información
 </a>
+
 </div>
 
 <p class="small" style="margin-top:18px;">
-Acceso por proceso de selección · 30 plazas por edición
+30 plazas por edición · Acceso por selección
 </p>
 
 </section>
