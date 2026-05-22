@@ -1,622 +1,344 @@
-<style>
-  .agata-expert-landing {
-    /* Paleta de colores oficial de Ágata Puig */
-    --color-primary: #662483;
-    --color-primary-light: #8a36b0;
-    --color-accent: #f6a000;
-    --color-accent-soft: #ffe433;
-    --color-text-main: #111827;
-    --color-text-muted: #4b5563;
-    --color-bg-light: #fafafa;
-    --color-bg-white: #ffffff;
-    
-    --radius-box: 16px;
-    --radius-btn: 50px;
-    --shadow-soft: 0 10px 40px rgba(102, 36, 131, 0.08);
-    --shadow-hover: 0 15px 50px rgba(246, 160, 0, 0.15);
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experto Universitario en Dinamización Digital - Ágata Puig</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #662483;
+            --color-primary-light: #8a36b0;
+            --color-accent: #f6a000;
+            --color-accent-soft: #ffe433;
+            --color-text-main: #111827;
+            --color-text-muted: #4b5563;
+            --color-bg-light: #fafafa;
+            --color-bg-white: #ffffff;
+            --radius-box: 24px;
+            --radius-btn: 50px;
+        }
 
-    font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
-    color: var(--color-text-main);
-    background: var(--color-bg-white);
-    line-height: 1.7;
-    font-size: 1.1rem;
-  }
+        * { box-sizing: border-box; }
 
-  .agata-expert-landing * {
-    box-sizing: border-box;
-  }
+        body {
+            margin: 0;
+            background-color: var(--color-bg-white);
+            font-family: 'Montserrat', sans-serif;
+            color: var(--color-text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
 
-  .agata-expert-landing__inner {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 3rem 1.5rem;
-  }
+        #app {
+            position: relative;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 200px;
+        }
 
-  .agata-expert-landing p {
-    margin: 0 0 1.5rem;
-    color: var(--color-text-muted);
-  }
+        /* The vertical "path" line */
+        .path-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 8px;
+            background: rgba(102, 36, 131, 0.05);
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
 
-  .agata-expert-landing strong {
-    color: var(--color-text-main);
-    font-weight: 700;
-  }
+        .item-container {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            min-height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 20px;
+            z-index: 2;
+        }
 
-  /* --- HERO SECTION --- */
-  .agata-hero {
-    background: linear-gradient(145deg, #ffffff, #fdf8ff);
-    border: 1px solid rgba(102, 36, 131, 0.1);
-    border-radius: var(--radius-box);
-    padding: 3rem 2rem;
-    box-shadow: var(--shadow-soft);
-    margin-bottom: 4rem;
-    text-align: center;
-  }
+        .character-wrapper {
+            position: relative;
+            width: 120px;
+            height: 180px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
 
-  .agata-kicker {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--color-accent);
-    font-weight: 800;
-    margin-bottom: 1rem;
-    display: block;
-  }
+        /* Connecting lines between people */
+        .character-wrapper::after {
+            content: "";
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            width: 4px;
+            height: 35px;
+            background: rgba(102, 36, 131, 0.3);
+            transform: translateX(-50%);
+            z-index: -1;
+        }
 
-  .agata-title {
-    font-size: 2.6rem;
-    line-height: 1.2;
-    color: var(--color-primary);
-    font-weight: 800;
-    margin: 0 0 1.5rem;
-    letter-spacing: -0.03em;
-  }
+        .character {
+            width: 100px;
+            height: 160px;
+            transform-origin: bottom center;
+            animation: idle 2.5s ease-in-out infinite alternate;
+        }
 
-  .agata-subtitle {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--color-text-main);
-    margin-bottom: 1rem;
-  }
+        @keyframes idle {
+            0% { transform: scaleY(1) rotate(-1deg); }
+            100% { transform: scaleY(1.05) rotate(1deg); }
+        }
 
-  .agata-meta {
-    font-size: 0.95rem;
-    color: var(--color-text-muted);
-    background: rgba(246, 160, 0, 0.1);
-    padding: 1.5rem;
-    border-radius: 12px;
-    margin-top: 2rem;
-    text-align: left;
-  }
+        /* Speech bubbles */
+        .speech-bubble {
+            position: absolute;
+            left: 140px;
+            bottom: 100px;
+            background: white;
+            border: 3px solid var(--color-primary);
+            border-radius: var(--radius-box);
+            padding: 25px;
+            width: 350px;
+            box-shadow: 10px 10px 0px rgba(102, 36, 131, 0.1);
+            opacity: 0;
+            transform: translateX(40px) scale(0.8);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            z-index: 10;
+            color: var(--color-primary);
+        }
 
-  /* --- BOTONES (CTA) --- */
-  .agata-cta-wrapper {
-    text-align: center;
-    margin: 3rem 0;
-  }
+        .item-container.active .speech-bubble {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
 
-  .agata-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--color-primary);
-    color: #ffffff !important;
-    font-weight: 700;
-    font-size: 1.15rem;
-    text-decoration: none;
-    padding: 1.2rem 2.5rem;
-    border-radius: var(--radius-btn);
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 20px rgba(102, 36, 131, 0.25);
-    border: 2px solid var(--color-primary);
-  }
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            left: -15px;
+            bottom: 30px;
+            border-width: 12px 15px 12px 0;
+            border-style: solid;
+            border-color: transparent var(--color-primary) transparent transparent;
+        }
 
-  .agata-btn:hover {
-    background: var(--color-accent);
-    border-color: var(--color-accent);
-    color: #ffffff !important;
-    transform: translateY(-3px);
-    box-shadow: 0 12px 25px rgba(246, 160, 0, 0.35);
-  }
+        /* Curve logic - we apply classes to containers to push characters */
+        .curve-left .character-wrapper { transform: translateX(-180px); }
+        .curve-right .character-wrapper { transform: translateX(180px); }
 
-  .agata-cta-caption {
-    font-size: 0.85rem;
-    color: var(--color-text-muted);
-    margin-top: 1rem;
-    font-weight: 500;
-  }
+        .curve-left .speech-bubble { left: auto; right: 140px; transform: translateX(-40px) scale(0.8); }
+        .curve-left .speech-bubble::after { left: auto; right: -15px; border-width: 12px 0 12px 15px; border-color: transparent transparent transparent var(--color-primary); }
+        .curve-left.active .speech-bubble { transform: translateX(0) scale(1); }
 
-  /* --- TESTIMONIOS --- */
-  .agata-testimonial {
-    background: var(--color-bg-white);
-    border-left: 5px solid var(--color-accent);
-    padding: 2.5rem;
-    margin: 3.5rem 0;
-    border-radius: 0 var(--radius-box) var(--radius-box) 0;
-    box-shadow: var(--shadow-soft);
-    position: relative;
-  }
+        /* Special elements */
+        .special-content {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        .item-container.active .special-content { opacity: 1; }
 
-  .agata-testimonial::before {
-    content: "“";
-    font-family: Georgia, serif;
-    font-size: 5rem;
-    color: rgba(102, 36, 131, 0.08);
-    position: absolute;
-    top: -10px;
-    left: 20px;
-    line-height: 1;
-  }
+        .btn-cta {
+            display: inline-block;
+            background: var(--color-primary);
+            color: white !important;
+            padding: 1.2rem 2.5rem;
+            border-radius: var(--radius-btn);
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 25px rgba(102, 36, 131, 0.3);
+            transition: all 0.3s ease;
+            border: 3px solid var(--color-primary);
+        }
+        .btn-cta:hover {
+            background: var(--color-accent);
+            border-color: var(--color-accent);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(246, 160, 0, 0.4);
+        }
 
-  .agata-quote-text {
-    font-size: 1.15rem;
-    font-style: italic;
-    color: var(--color-text-main);
-    position: relative;
-    z-index: 1;
-    margin-bottom: 1rem;
-  }
+        .testimonial-card {
+            background: #fff;
+            border-left: 8px solid var(--color-accent);
+            padding: 30px;
+            border-radius: 0 var(--radius-box) var(--radius-box) 0;
+            box-shadow: 0 10px 40px rgba(102, 36, 131, 0.08);
+            text-align: left;
+            margin: 20px;
+            width: 100%;
+        }
+        .testimonial-author {
+            color: var(--color-primary);
+            font-weight: 800;
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
 
-  .agata-quote-author {
-    font-weight: 800;
-    color: var(--color-primary);
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
+        .img-block {
+            width: 100%;
+            max-width: 500px;
+            border-radius: var(--radius-box);
+            box-shadow: 0 20px 40px rgba(102, 36, 131, 0.1);
+            border: 8px solid white;
+        }
 
-  .agata-quote-story {
-    font-size: 0.95rem;
-    color: var(--color-text-muted);
-    background: var(--color-bg-light);
-    padding: 1.5rem;
-    border-radius: 12px;
-    border: 1px solid rgba(0,0,0,0.03);
-    margin: 0;
-    line-height: 1.6;
-  }
+        .intro-screen {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(145deg, #ffffff, #fdf8ff);
+        }
 
-  .agata-quote-story strong {
-    color: var(--color-primary);
-  }
+        .intro-title {
+            font-size: 3rem;
+            color: var(--color-primary);
+            font-weight: 800;
+            margin-bottom: 20px;
+            max-width: 800px;
+        }
 
-  /* --- BLOQUE IMAGEN --- */
-  .agata-photo-block {
-    margin: 4rem 0;
-    border-radius: var(--radius-box);
-    overflow: hidden;
-    box-shadow: var(--shadow-soft);
-    border: 5px solid #ffffff;
-  }
+        .scroll-indicator {
+            margin-top: 40px;
+            animation: bounce 2s infinite;
+        }
 
-  .agata-photo-block img {
-    display: block;
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
 
-  @media (max-width: 768px) {
-    .agata-title { font-size: 2rem; }
-    .agata-expert-landing { font-size: 1rem; }
-    .agata-testimonial { padding: 1.5rem; }
-    .agata-btn { width: 100%; padding: 1rem; }
-  }
-</style>
+        @media (max-width: 768px) {
+            .speech-bubble { width: 200px; font-size: 0.9rem; left: 80px; }
+            .curve-left .speech-bubble { right: 80px; }
+            .character-wrapper { transform: scale(0.8); }
+            .curve-left .character-wrapper { transform: translateX(-100px) scale(0.8); }
+            .curve-right .character-wrapper { transform: translateX(100px) scale(0.8); }
+        }
+    </style>
+</head>
+<body>
 
-<div class="agata-expert-landing">
-  <div class="agata-expert-landing__inner">
-
-    <div class="agata-hero">
-      <span class="agata-kicker">Experto Universitario en Dinamización Digital y Social</span>
-      <h1 class="agata-title">Mientras todo el mundo crea contenido, muy pocos saben crear pertenencia.</h1>
-      
-      <p class="agata-subtitle">
-        El único Experto Universitario que te enseña el método completo para que cualquier grupo avance, termine y consiga resultados reales.
-      </p>
-      <p>
-        Para formadores, coaches, mentores, emprendedores y profesionales de servicios que saben que hay un siguiente nivel. Y que están listos para encontrarlo.
-      </p>
-      
-      <div class="agata-meta">
-        <strong>La única titulación universitaria oficial dedicada a esta disciplina. Avalada por tres universidades internacionales:</strong>
-        <br><br>
-        ✓ Universidad EUNEIZ (30 créditos ECTS · Reconocimiento español y europeo)<br>
-        ✓ California NIU (Estados Unidos)<br>
-        ✓ Universidad San Miguel (México)<br><br>
-        <strong>20 expertos referentes del sector · 5 ediciones consecutivas</strong>
-      </div>
-
-      <div class="agata-cta-wrapper">
-        <a href="https://calendar.app.google/QQqVbyAjwzmUYzNcA" target="_blank" class="agata-btn">
-          Quiero solicitar mi plaza
-        </a>
-        <p class="agata-cta-caption">Plazas limitadas a 30 alumnos por edición · Acceso solo por proceso de selección</p>
-      </div>
+<div id="app">
+    <div class="intro-screen">
+        <h1 class="intro-title">Mientras todo el mundo crea contenido, muy pocos saben crear pertenencia.</h1>
+        <div class="scroll-indicator">
+            <svg width="30" height="50" viewBox="0 0 30 50">
+                <rect x="5" y="5" width="20" height="40" rx="10" fill="none" stroke="var(--color-primary)" stroke-width="2" />
+                <circle cx="15" cy="15" r="3" fill="var(--color-primary)">
+                    <animate attributeName="cy" values="15;35;15" dur="2s" repeatCount="indefinite" />
+                </circle>
+            </svg>
+            <p style="color: var(--color-primary); font-weight: 600;">Haz scroll para caminar</p>
+        </div>
     </div>
-
-    <div class="agata-testimonial">
-      <p class="agata-quote-text">
-        "Los creadores y emprendedores necesitan con urgencia dinamizadores que den vida e identidad a sus grupos... Con Ágata nunca te sientes sola, siempre tienes apoyo y cercanía."
-      </p>
-      <p class="agata-quote-author">— Isabel</p>
-      <div class="agata-quote-story">
-        <strong>Su historia:</strong> Antes de empezar, Isabel veía el mundo digital como algo frío y dudaba si esta formación le serviría para dedicarse a ello. Gracias al Experto, se dio cuenta de que su verdadera vocación sigue siendo su profesión sanitaria, pero ahora aplica la dinamización para aportarle una humanidad y calidez increíbles, habiendo ganado además una inmensa red de contactos y apoyo en el sector digital.
-      </div>
-    </div>
-
-    <p>
-      Ya sea que tus alumnos abandonen tus formaciones dejándote sin los casos de éxito que necesitas para vender, o que seas un profesional digital atrapado en un techo de ingresos ofreciendo servicios básicos, tu problema no es el algoritmo, sino la falta de conexión humana real.
-    </p>
-
-    <p>
-      Si sigues intentando solucionarlo creando más contenido, terminarás completamente agotado, cargando tú solo con la energía de grupos mudos y empujando un carro que se para en seco en cuanto te tomas tres días libres, o quedando como un ejecutor de tareas fácilmente reemplazable por la Inteligencia Artificial.
-    </p>
-
-    <p>
-      La clave para romper este ciclo es dominar la <strong>Inteligencia Relacional</strong>: a través del Experto Universitario en Dinamización Digital aprenderás la psicología de grupos exacta para transformar cualquier audiencia pasiva en un ecosistema vivo, lo que te permitirá escalar tu propio negocio con una tribu que se sostiene sola, o dar el salto para convertirte en el Arquitecto de Comunidades más demandado por las grandes marcas del sector.
-    </p>
-
-    <p><strong>¿Qué porcentaje de los alumnos termina realmente una formación hoy en día?</strong></p>
-    <p>No tienes que responder en voz alta.</p>
-    <p>Pero si la cifra te incomoda un poco, quédate aquí. Porque lo que voy a contarte cambia la forma en que entiendes ese problema.</p>
-
-    <p>
-      No es culpa del contenido.<br>
-      No es culpa del precio.<br>
-      No es culpa de tus alumnos.
-    </p>
-
-    <p><strong>Es que nadie te enseñó a diseñar la experiencia que hace que la gente se quede.</strong></p>
-
-    <p>Piensa en tu semana típica.</p>
-    <p>
-      El grupo de Whatsapp con doscientas personas donde solo hablan tres.<br>
-      Los módulos que se acumulan sin abrir.<br>
-      Los lanzamientos trimestrales para compensar las bajas del trimestre anterior.<br>
-      Y tú cargando con la energía del grupo.
-    </p>
-
-    <p>
-      Si publicas, hay movimiento.<br>
-      Si desconectas tres días, todo se para.
-    </p>
-
-    <p>
-      El sector te dijo que el problema era el embudo, el algoritmo o el contenido.<br>
-      Llevas años afinando esas piezas.<br>
-      El techo sigue ahí.
-    </p>
-
-    <p>
-      Y mientras tanto, sin alumnos que terminen no hay transformaciones reales.<br>
-      Sin transformaciones no hay casos de éxito.<br>
-      Sin casos de éxito, cada lanzamiento cuesta más y vende menos.
-    </p>
-
-    <p>Ese es el círculo que nadie te explicó cómo romper.</p>
-
-    <div class="agata-testimonial">
-      <p class="agata-quote-text">
-        "Esto no solo cambia tu forma de trabajar, sino también tu forma de verte a ti misma y tu relación con tu entorno. Y eso lo vale todo."
-      </p>
-      <p class="agata-quote-author">— Sara</p>
-      <div class="agata-quote-story">
-        <strong>Su historia:</strong> Antes de apuntarse, Sara sentía dudas sobre si la dinamización encajaría de forma práctica con sus servicios como asistente virtual y cargaba con un gran peso de autoexigencia. Durante la formación, no solo descubrió cómo aplicar la gamificación con resultados increíbles, sino que logró un cambio emocional brutal: aprendió a dejar de ponerse en el centro de los problemas, a valorarse más y a trabajar con mucha menos carga emocional.
-      </div>
-    </div>
-
-    <p>O quizás tu historia es diferente.</p>
-
-    <p>
-      Llevas tiempo en redes, creando contenido, montando embudos.<br>
-      Sabes que lo que ofreces tiene valor.<br>
-      Pero hay un techo invisible que no consigues traspasar.
-    </p>
-
-    <p>Y lo que más disfrutas —acompañar, conectar, mover a la gente— no sabes bien cómo monetizarlo.</p>
-
-    <p>Sea cual sea tu punto de partida, la raíz es la misma.</p>
-
-    <p>
-      No es el contenido.<br>
-      No es la estrategia.<br>
-      No es el algoritmo.
-    </p>
-
-    <p><strong>Es que nadie te enseñó a crear pertenencia de forma deliberada.</strong></p>
-
-    <p>Los expertos en marketing digital no te van a contar esto:</p>
-
-    <p>La saturación que sientes —la tuya y la de tus clientes— no viene de que haya demasiado contenido en internet. Viene de que hay demasiada soledad disfrazada de comunidad.</p>
-
-    <p>
-      Grupos llenos de personas que no se conocen entre sí.<br>
-      Alumnos avanzando a oscuras, sin nadie que les diga "oye, tú puedes" justo cuando están a punto de rendirse.<br>
-      Formaciones compradas por impulso que generan culpa, no resultados.
-    </p>
-
-    <p>
-      Y creadores convertidos en animadores de crucero:<br>
-      Si no subes el ánimo, el grupo se muere.<br>
-      Si desconectas para recoger a tu peque del campamento, todo se para.
-    </p>
-
-    <p>Eso no es una comunidad. Es una dependencia absoluta de ti.</p>
-
-    <p>Y lo peor no es el agotamiento.</p>
-
-    <p>
-      Lo peor es que sin casos de éxito reales, cada vez es más difícil vender.<br>
-      El mercado ya no compra promesas.<br>
-      Compra pruebas.
-    </p>
-
-    <p>
-      La Inteligencia Artificial puede montar un temario en segundos.<br>
-      Puede automatizar tus correos y escribir tus embudos....<br>
-      Pero hay algo que ninguna máquina va a poder replicar:
-    </p>
-
-    <p><strong>La Inteligencia Relacional.</strong></p>
-
-    <p>
-      Esa capacidad humana de conectar emocionalmente.<br>
-      De hacer que una persona se sienta vista, reconocida y parte de algo.
-    </p>
-
-    <p>
-      Las personas no permanecen donde consumen.<br>
-      Permanecen donde pertenecen.
-    </p>
-
-    <p>Y construir pertenencia de forma deliberada, con método y estructura, es exactamente lo que nadie está enseñando.</p>
-
-    <p>Hasta ahora.</p>
-
-    <div class="agata-testimonial">
-      <p class="agata-quote-text">
-        "Formarse con Ágata Puig es tener un sello de calidad que te da un respaldo y una confianza extra frente a tus clientes."
-      </p>
-      <p class="agata-quote-author">— Rosalía</p>
-      <div class="agata-quote-story">
-        <strong>Su historia:</strong> Rosalía es periodista y llevaba años dinamizando comunidades de forma puramente intuitiva, pero sentía la necesidad de adquirir una estructura y metodología claras. Con el Experto consiguió exactamente ese marco de trabajo, un sinfín de recursos y, sobre todo, un "sello de calidad" al formarse con Ágata que hoy le brinda respaldo profesional, confianza extra y constantes oportunidades y colaboraciones en el sector.
-      </div>
-    </div>
-
-    <p><strong>Déjame contarte cómo llegué hasta aquí.</strong></p>
-
-    <p>
-      Mi camino no empezó en despachos elegantes.<br>
-      Empezó en la trinchera.
-    </p>
-
-    <p>Trabajé en una gran multinacional —el Banco Santander— pero mi aprendizaje real fue gestionando las redes de pequeños restaurantes. Sin página web. Solo con una página de Facebook y muchas ganas.</p>
-
-    <p>Años después, tras mi segunda maternidad, entré en un programa de reeducación alimentaria y actividad física. Me fui con todo. Conseguí mis objetivos.</p>
-
-    <p>Pero algo no me dejaba en paz.</p>
-
-    <p>
-      El resto de mis compañeros no lo conseguía.<br>
-      Mismos contenidos. Mismo acceso. Idéntico programa.<br>
-      Resultados completamente distintos.
-    </p>
-
-    <p>
-      Me puse a estudiar qué había hecho yo de forma diferente.<br>
-      Lo sistematicé.<br>
-      Se lo propuse al grupo.
-    </p>
-
-    <p>Y sus resultados cambiaron de una manera que no esperaba.</p>
-
-    <p>Ahí lo vi claro:</p>
-
-    <p>
-      No era el contenido lo que marcaba la diferencia.<br>
-      <strong>Era el patrón de activación humana.</strong>
-    </p>
-
-    <p>
-      Ese patrón invisible que hace que las personas ejecuten en lugar de solo consumir.<br>
-      Que avancen en lugar de solo escuchar.
-    </p>
-
-    <p>Se puede aprender. Se puede diseñar. Se puede replicar.</p>
-
-    <p>
-      Mis libros son bestsellers no por publicidad masiva.<br>
-      Son bestsellers porque tengo una tribu que creyó en ellos antes de que nadie más los viera.<br>
-      Una comunidad viva que los compró, los recomendó y los llevó a lugares a los que yo sola jamás habría llegado.
-    </p>
-
-    <p>
-      Eso es lo que una comunidad viva hace por ti.<br>
-      Lo que mil seguidores fríos en redes jamás harán.
-    </p>
-
-    <p>
-      Esa intuición se convirtió en método.<br>
-      El método se convirtió en escuela.<br>
-      Y la escuela ha entrado en la universidad.
-    </p>
-
-    <p>
-      Recibí el Premio Evoluciona por votación popular sin tener una gran audiencia en redes.<br>
-      Mi autoridad nace de los resultados de mi tribu.
-    </p>
-
-    <div class="agata-photo-block">
-      <img src="https://agatapuig.com/wp-content/uploads/2025/12/WhatsApp-Image-2024-12-02-at-15.36.50-7-e1758534697238-1024x668.jpeg" alt="Ágata Puig liderando su comunidad" loading="lazy">
-    </div>
-
-    <div class="agata-testimonial">
-      <p class="agata-quote-text">
-        "Me permitió volver a conectar con mi vocación uniendo la educación y el soporte digital, con la tranquilidad de que todo lo que aprendes es aplicable desde el primer día."
-      </p>
-      <p class="agata-quote-author">— Águeda</p>
-      <div class="agata-quote-story">
-        <strong>Su historia:</strong> Águeda buscaba la manera de conectar su experiencia como educadora social con sus servicios de asistencia virtual, pero no tenía claro cómo unirlos en el entorno digital. Tras pasar por la escuela, logró integrar ambas pasiones: hoy aplica técnicas de comportamiento humano para acompañar a los alumnos, mejorar el soporte y fidelizar clientes, demostrando que la educación y el mundo digital son una combinación perfecta.
-      </div>
-    </div>
-
-    <p><strong>El método ya está funcionando en algunos de los negocios digitales más importantes del sector.</strong></p>
-
-    <p>
-      ✓ <strong>Jesús Honrubia — Lector Voraz / Más y Mejor:</strong> Comunidad activa de más de 1.500 personas. Integró el rol del dinamizador para gestionar y fidelizar el crecimiento de su tribu.<br><br>
-      ✓ <strong>8Belts:</strong> La aplicación de la metodología redujo drásticamente el abandono y bajó su tasa de devolución en los primeros 15 días de prueba.<br><br>
-      ✓ <strong>Sergio Cánovas — Crea Tu Huella:</strong> Más de 1.500 miembros activos que transformaron su participación pasiva en un ecosistema con identidad propia.<br><br>
-      ✓ <strong>Fuertafit · Experienciar · D'arte:</strong> Marcas referentes que integraron sistemas de dinamización y gamificación para disparar su tasa de aprovechamiento.
-    </p>
-
-    <div class="agata-testimonial">
-      <p class="agata-quote-text">
-        "El Experto me aportó un cambio interno increíble y una confianza enorme en mi creatividad y en mi propio proyecto de vida."
-      </p>
-      <p class="agata-quote-author">— Ángela</p>
-      <div class="agata-quote-story">
-        <strong>Su historia:</strong> Ángela, mentora de autoliderazgo, llegó a la escuela en un momento en el que sentía que le faltaba confianza en sí misma. El proceso le regaló un cambio interno espectacular: aprendió a integrar herramientas como la morfopsicología en su proyecto, multiplicó la seguridad en su propia creatividad y recuperó la fuerza necesaria para impulsar su proyecto de vida, llevándola incluso a escribir su propio libro.
-      </div>
-    </div>
-
-    <p><strong>Es la primera —y única— titulación universitaria oficial en España dedicada a esta disciplina.</strong></p>
-
-    <p>No es un curso con vídeos pregrabados que dejará acumulando polvo digital.</p>
-
-    <p>
-      Es la formación donde aprendes el patrón completo:<br>
-      cómo activar a las personas,<br>
-      cómo construir comunidades que funcionen sin depender al cien por cien de tu presencia,<br>
-      y cómo convertir todo eso en una profesión real y de alta demanda.
-    </p>
-
-    <p>
-      Avalada académicamente por la Universidad EUNEIZ con 30 créditos ECTS.<br>
-      Con reconocimiento europeo. Y muy atractiva para el mercado latinoamericano.
-    </p>
-
-    <p><strong>La formación en sí misma está dinamizada.</strong></p>
-
-    <p>
-      No estudias la metodología desde fuera.<br>
-      La vives desde dentro desde el primer día.
-    </p>
-
-    <p>
-      Mi equipo de tutores —que son antiguos alumnos de la escuela que ya viven de esto— y yo nos encargamos de que no te quedes a medias.<br>
-      Resolvemos de raíz la mayor razón por la que la gente abandona: la falta de tiempo, el momento vital, la sensación de ir sola.
-    </p>
-
-    <p>Te dinamizamos a ti mientras aprendes a dinamizar a otros.</p>
-
-    <p><strong>Las 5 áreas clave que vas a dominar:</strong></p>
-
-    <p>
-      <strong>MENTALIDAD:</strong> El patrón de éxito desde dentro. La actitud y los valores que sostienen a un líder de comunidad.<br><br>
-      <strong>DINÁMICAS SOCIALES:</strong> El arte de despertar a la gente. Experiencias memorables, gamificación real y técnicas de alto impacto para captar y sostener la atención humana.<br><br>
-      <strong>ACOMPAÑAMIENTO HUMANO:</strong> El mapa de la psicología de grupos. Herramientas psicológicas —morfopsicología, eneagrama, neurodinámica— para comprender quién es quién, resolver conflictos y acompañar de forma profundamente empática.<br><br>
-      <strong>ARQUITECTURA DE COMUNIDADES:</strong> Estructuras de negocio, métricas de engagement real, plataformas y modelos de membresía para que la comunidad funcione como un activo y no como una carga.<br><br>
-      <strong>NEGOCIO DINAMIZADOR:</strong> Tu marca personal, branding, autoridad visual, oratoria y narrativa de ventas para monetizar lo que construyes.
-    </p>
-
-    <p>
-      <em>"Yo misma he aprendido de los profesionales que he traído como profesores. Podría dar la clase yo sola, pero he seleccionado y traído a los mayores expertos referentes de cada área para conectarte directamente con ellos."</em> — Ágata Puig
-    </p>
-
-    <p>
-      ✓ 9 meses de duración (Del 1 de octubre al 30 de junio)<br>
-      ✓ Dedicación estimada de 2 a 3 horas semanales<br>
-      ✓ 20 profesores en activo —profesionales de trinchera, no teóricos— con vídeo-presentación individual para cada uno de ellos<br>
-      ✓ Germán Jiménez (Afiliación), Marsela Roswall (Branding), Beatriz Martín (Autoridad Visual), Rafa Garrido (Dinámicas y Juego), entre otros.
-    </p>
-
-    <p><strong>Esto no es un complemento a lo que ya haces. Es la evolución que te saca del techo.</strong></p>
-
-    <p>
-      <strong>Si ya tienes tus propias comunidades o formaciones:</strong><br>
-      Dejarás de sostener la energía del grupo con tu sola presencia.<br>
-      Te convertirás en la persona que diseña un ecosistema que funciona solo.<br>
-      Tus alumnos completarán tus programas. Generarán resultados.<br>
-      Y se convertirán en los casos de éxito que hacen que tus ventas fluyan solas.
-    </p>
-    <p>Del modelo de caza al modelo de agricultura: cultivar una tierra fértil donde las personas se quedan, crecen y te traen a otros.</p>
-
-    <p>
-      <strong>Si eres profesional digital (copywriter, asistente virtual, creador, marketer):</strong><br>
-      Dejarás de ser un proveedor de tareas.<br>
-      Te convertirás en el socio de retención estratégico que toda gran escuela digital necesita con urgencia.
-    </p>
-
-    <p>El dinamizador digital es hoy uno de los perfiles más demandados y con menor oferta de profesionales formados.</p>
-
-    <p>Es tu momento de especializarte. Con una titulación universitaria detrás.</p>
-
-    <p><strong>Y hay algo que quiero dejarte muy claro: La escuela tiene un Compromiso Explícito de Empleabilidad.</strong></p>
-
-    <p>Cuando termines, revisaré personalmente tu comunidad o tu proyecto de aplicación. Y te daré la oportunidad de ayudar a otros. Tendrás acceso directo a ofertas laborales y oportunidades reales a través de mi red de contactos y mi talento conector.</p>
-
-    <p>La promesa no es solo que aprendas. Es que salgas con mercado.</p>
-
-    <div class="agata-testimonial">
-      <p class="agata-quote-text">
-        "Un año después de empezar en la escuela puedo decir que vivo de esta profesión y que he logrado el mayor de mis sueños."
-      </p>
-      <p class="agata-quote-author">— Nora</p>
-      <div class="agata-quote-story">
-        <strong>Su historia:</strong> Nora es médica y durante la pandemia soñaba con crear espacios digitales donde las personas en procesos de salud no se sintieran solas, pero no encontraba a nadie que le enseñara cómo hacerlo. Un año después de entrar en la escuela, ha cumplido su mayor sueño: vive al 100% de esta profesión, diseñando y dinamizando comunidades donde sus clientes sanan, se acompañan y forjan amistades reales.
-      </div>
-    </div>
-
-    <p><strong>Quiero elegir yo a los próximos alumnos. No su cuenta bancaria.</strong></p>
-
-    <p>El acceso a esta formación es por proceso de selección. No para poner obstáculos. Sino porque el 100% de casos de éxito de esta escuela se sostiene gracias a que cuido el perfil de quien entra.</p>
-
-    <p>Busco personas que se reconozcan en esto:</p>
-
-    <p>
-      ✓ Sientes satisfacción genuina cuando otros alcanzan sus metas, no solo tú.<br>
-      ✓ Tienes facilidad natural para tomar la iniciativa y animar a otros a actuar.<br>
-      ✓ Valoras las relaciones basadas en la confianza real por encima de los seguidores en redes.<br>
-      ✓ Crees que el juego, la risa y la diversión son herramientas de trabajo serias.<br>
-      ✓ Quieres dejar de depender del algoritmo para hacer crecer tus proyectos.
-    </p>
-
-    <p>Si te has visto aquí, este es tu lugar.</p>
-
-    <p>Las plazas están limitadas a 30 alumnos para garantizar un acompañamiento real, humano y personalizado.</p>
-
-    <p><strong>Sobre la inversión. Voy a ser directa.</strong></p>
-
-    <p>Si llevas un rato leyendo los avales, el temario y el nivel del profesorado, ya estás calculando.</p>
-
-    <p>La cifra que te ronda la cabeza probablemente se parece al coste de un máster universitario estándar en España: entre 6.000 y 10.000 euros. Y ese es, honestamente, el valor real de lo que esta formación ofrece.</p>
-
-    <p>He tomado la decisión consciente de mantener la inversión por debajo del precio de mercado. Porque quiero que entre quien tiene el talento y la actitud. No solo quien tiene la cuenta más grande.</p>
-
-    <p>No verás un botón de pago en esta página.</p>
-
-    <p>Los detalles de la inversión y las opciones de pago a plazos los hablamos en la sesión informativa privada. Primero comprobamos que encajamos. Luego hablamos de números.</p>
-
-    <p>El mercado digital está lleno de creadores de contenido. Casi no tiene Arquitectos de Comunidades.</p>
-
-    <p>En tiempos de saturación, los negocios que sobrevivirán y prosperarán no son los que más invierten en publicidad cara. Son los que saben fidelizar a los que ya tienen.</p>
-
-    <p>Los grandes referentes ya lo saben: sin programas completados y sin testimonios reales, es imposible sostener un negocio digital.</p>
-
-    <p>La dinamización es la solución estratégica a ese problema. Y hoy hay más demanda que profesionales cualificados.</p>
-
-    <p>Si has llegado hasta aquí, algo ha resonado.</p>
-
-    <p>El primer paso es completar tu solicitud y acceder a una sesión informativa sin compromiso. Analizamos tu situación, te cuento el funcionamiento al detalle y decidimos juntos si tiene sentido comenzar este camino.</p>
-
-    <div class="agata-cta-wrapper">
-      <a href="https://calendar.app.google/QQqVbyAjwzmUYzNcA" target="_blank" class="agata-btn">
-        Agenda tu sesión informativa
-      </a>
-      <p class="agata-cta-caption">Sin ningún compromiso. Hablamos y vemos si encajamos.</p>
-    </div>
-
-  </div>
+    <div class="path-line" id="pathLine"></div>
 </div>
+
+<script src="character_assets.js"></script>
+<script src="extracted_content.js"></script>
+<script>
+    const app = document.getElementById('app');
+
+    function init() {
+        content.forEach((item, index) => {
+            const container = document.createElement('div');
+            container.className = 'item-container';
+
+            // Randomly choose a character template and colors
+            const templateIdx = Math.floor(Math.random() * characterTemplates.length);
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            const skin = skins[Math.floor(Math.random() * skins.length)];
+            const hair = hairs[Math.floor(Math.random() * hairs.length)];
+            const scale = 0.9 + Math.random() * 0.2;
+
+            const charWrapper = document.createElement('div');
+            charWrapper.className = 'character-wrapper';
+            charWrapper.innerHTML = characterTemplates[templateIdx](color, skin, hair, scale);
+
+            const bubble = document.createElement('div');
+            bubble.className = 'speech-bubble';
+            bubble.innerText = item.text;
+
+            // Handle special types and curves
+            if (item.type === 'cta') {
+                container.classList.add('curve-left');
+                const special = document.createElement('div');
+                special.className = 'special-content';
+                special.innerHTML = `<a href="${item.url}" target="_blank" class="btn-cta">${item.text}</a>`;
+                container.appendChild(special);
+                bubble.innerText = "¡Haz clic aquí mismo!";
+            } else if (item.type === 'testimonial-start') {
+                container.classList.add('curve-right');
+                const special = document.createElement('div');
+                special.className = 'special-content';
+                special.innerHTML = `
+                    <div class="testimonial-card">
+                        <div class="testimonial-author">— ${item.author}</div>
+                    </div>
+                `;
+                container.appendChild(special);
+            } else if (item.type === 'image') {
+                container.classList.add('curve-left');
+                const special = document.createElement('div');
+                special.className = 'special-content';
+                special.innerHTML = `<img src="${item.url}" class="img-block" alt="Ágata Puig">`;
+                container.appendChild(special);
+                bubble.innerText = "¡Mira qué energía!";
+            } else if (index % 10 === 0 && index !== 0) {
+                // Add some natural curves occasionally even without special content
+                container.classList.add(Math.random() > 0.5 ? 'curve-left' : 'curve-right');
+            }
+
+            charWrapper.appendChild(bubble);
+            container.appendChild(charWrapper);
+            app.appendChild(container);
+        });
+
+        // Setup Intersection Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                } else {
+                    // We keep it active once seen to maintain the "story" feel as you scroll?
+                    // Or remove it to make it more interactive. The requirement says "se activa su frase".
+                    // Let's remove it so only the one in focus is active.
+                    entry.target.classList.remove('active');
+                }
+            });
+        }, {
+            threshold: 0.6,
+            rootMargin: '-10% 0px -10% 0px'
+        });
+
+        document.querySelectorAll('.item-container').forEach(c => observer.observe(c));
+    }
+
+    init();
+</script>
+
+</body>
+</html>
